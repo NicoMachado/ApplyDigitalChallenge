@@ -9,7 +9,7 @@ import com.ngm.applydigitalchallenge.home.data.local.entities.NewsEntity
 
 @Dao
 interface HackerNewsDao {
-    @Query("SELECT * FROM NewsEntity WHERE isDeleted = 0")
+    @Query("SELECT * FROM NewsEntity WHERE isDeleted = 0 Order By createdAt DESC")
     suspend fun getLatestNews(): List<NewsEntity>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

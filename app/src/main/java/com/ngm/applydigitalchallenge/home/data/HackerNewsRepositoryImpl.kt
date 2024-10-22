@@ -18,6 +18,7 @@ class HackerNewsRepositoryImpl(
 
         val remoteNews = getNewsFromApi()
         remoteNews.map {
+            println("Insertando: ${it.objectId}")
             dao.insertNew(toNewsEntity(it))
         }
 
@@ -29,6 +30,7 @@ class HackerNewsRepositoryImpl(
     private suspend fun getNewsFromApi() : List<HitDto> {
         return try {
             val response = api.getTopArticles()
+            println("getNewsFromApi : ${response.hits.size}")
             response.hits
         } catch (e: Exception) {
             emptyList<HitDto>()
@@ -36,11 +38,8 @@ class HackerNewsRepositoryImpl(
     }
 
     override suspend fun deleteNews(id: Int) {
-        println("deleteNews : Deleting news with id: $id ${newsList.size}")
         newsList = newsList.filter { it.id != id  }
         dao.deleteNews(id)
-        println("deleteNews : News list after deletion: ${newsList.size}")
-        println("deleteNews : News list after deletion: $newsList")
     }
 
     //Por simplicidad lo dejo aca, pero debe estar en un mapper

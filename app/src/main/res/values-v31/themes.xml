@@ -6,6 +6,6 @@
         <item name="windowSplashScreenIconBackgroundColor">@color/ad_blue</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/animated_logo</item>
         <!-- Required for animated icons. -->
-        <item name="windowSplashScreenAnimationDuration">200</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
     </style>
 </resources>
